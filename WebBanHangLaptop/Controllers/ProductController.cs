@@ -13,6 +13,7 @@ namespace WebBanHangLaptop.Controllers
         {
             _productRepository = productRepository;
         }
+        //mới thay đổi
         //public IActionResult Add()
         //{
         //    var categories = _categoryRepository.GetAllCategories();
