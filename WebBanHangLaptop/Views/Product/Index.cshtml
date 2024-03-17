@@ -46,7 +46,24 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                    @if (item.ImageUrl != null)
+                    {
+                        
+                        <div class="gallery">
+                            <div class="img-w">
+                                <img src="@item.ImageUrl" alt="" />
+                            </div>
+                           
+                        </div>
+
+
+
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
