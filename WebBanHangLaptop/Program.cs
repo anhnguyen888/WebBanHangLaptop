@@ -22,8 +22,6 @@ builder.Services.AddRazorPages();
 // Đăng ký dịch vụ UserManager
 builder.Services.AddScoped<UserManager<ApplicationUser>>();
 
-
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -48,8 +46,16 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapRazorPages();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
