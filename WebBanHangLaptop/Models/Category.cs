@@ -10,4 +10,5 @@ namespace WebBanHangLaptop.Models
         public List<Product>? Products { get; set; }
     }
 
+
 }

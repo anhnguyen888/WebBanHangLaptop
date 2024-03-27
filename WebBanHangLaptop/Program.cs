@@ -1,12 +1,27 @@
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebBanHangLaptop.Data;
+using WebBanHangLaptop.Models;
 using WebBanHangLaptop.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebBanHangConnection")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    // Cấu hình các tùy chọn Identity
+})
+ .AddDefaultUI()
+.AddEntityFrameworkStores<ApplicationDbContext>() // Thay thế ApplicationDbContext bằng DbContext của bạn
+.AddDefaultTokenProviders();
+
+builder.Services.AddRazorPages();
+
+// Đăng ký dịch vụ UserManager
+builder.Services.AddScoped<UserManager<ApplicationUser>>();
+
 
 
 // Add services to the container.
@@ -31,6 +46,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
