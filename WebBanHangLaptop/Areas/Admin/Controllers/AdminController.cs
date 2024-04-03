@@ -13,7 +13,7 @@ using WebBanHangLaptop.Repository;
 namespace WebBanHangLaptop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="admin")]
+    //[Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
 

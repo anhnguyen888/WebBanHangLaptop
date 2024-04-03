@@ -1,22 +1,31 @@
 ﻿@model IEnumerable<WebBanHangLaptop.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach(var item in Model){
-    <div class="col">
-        <div class="card">
-            <img src="@item.ImageUrl" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text">@item.Description</p>
-                <p class="card-text">Giá: @item.Price</p>
-                <a href="#" class="btn btn-primary">Mua Ngay</a>
-            </div>
-        </div>
-    </div>
-    }
+	@foreach (var item in Model)
+	{
+		<div class="col">
+			<div class="card">
+				<img src="@item.ImageUrl" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">@item.Name</h5>
+					<p class="card-text">@item.Description</p>
+					<p class="card-text">Giá: @item.Price</p>
+
+					<form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+						<input type="hidden" name="productId" value="@item.Id" />
+						<label for="quantity">Số lượng:</label>
+						<input type="number" id="quantity" name="quantity" value="1" min="1" />
+						<button class="btn btn-info" type="submit">Thêm vào giỏ hàng</button>
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	}
 </div>
